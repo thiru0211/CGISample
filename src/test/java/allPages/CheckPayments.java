@@ -42,10 +42,10 @@ public class CheckPayments extends Locators {
 		driver.manage().timeouts().pageLoadTimeout(Duration.ofMinutes(1));
 		//driver.get("http://192.168.1.36:90/#/auth");
 		driver.get("https://www.hedgeonline.us/RCGI/auth");
-		File file=new File("C:\\Users\\thirumaran\\eclipse-workspace\\PowerFundOnee\\Data.properties");
-		FileInputStream FIS=new FileInputStream(file);
-		Properties prop=new Properties();
-		prop.load(FIS);	
+//		File file=new File("C:\\Users\\thirumaran\\eclipse-workspace\\PowerFundOnee\\Data.properties");
+//		FileInputStream FIS=new FileInputStream(file);
+//		Properties prop=new Properties();
+//		prop.load(FIS);	
 	}
 
 	@AfterMethod
