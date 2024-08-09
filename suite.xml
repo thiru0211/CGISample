@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Suite">
+  <test thread-count="5" name="Test">
+    <classes>
+      <class name="allPages.InstallerSetup"/>
+      <class name="allPages.BankSetup"/>
+      <class name="allPages.ViewUser"/>
+      <class name="allPages.AllReportModules"/>
+      <class name="allPages.Reports"/>
+      <class name="allPages.Login"/>
+      <class name="allPages.CustomerACHUpload"/>
+      <class name="allPages.InvestorSetup"/>
+      <class name="allPages.CustomerList"/>
+      <class name="allPages.InvoicePayAndCreate"/>
+      <class name="allPages.Schedulers"/>
+      <class name="allPages.CustomerGroup"/>
+      <class name="allPages.Tickets"/>
+      <class name="allPages.CheckPayments"/>
+    </classes>
+  </test> <!-- Test -->
+</suite> <!-- Suite -->
