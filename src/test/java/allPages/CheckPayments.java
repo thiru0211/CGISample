@@ -35,17 +35,17 @@ public class CheckPayments extends Locators {
 	public void setUp() throws IOException{
 		WebDriverManager.chromedriver().setup();
 		ChromeOptions option=new ChromeOptions();
-		//option.addArguments("--headless=new");
+		option.addArguments("--headless=new");
 		driver=new ChromeDriver(option);
 		driver.manage().window().maximize(); 
 		driver.manage().timeouts().implicitlyWait(Duration.ofMinutes(1));
 		driver.manage().timeouts().pageLoadTimeout(Duration.ofMinutes(1));
-		//driver.get("http://192.168.1.36:90/#/auth");
+		//driver.get("http://192.168.1.36/CGI/auth");
 		driver.get("https://www.hedgeonline.us/RCGI/auth");
-//		File file=new File("C:\\Users\\thirumaran\\eclipse-workspace\\PowerFundOnee\\Data.properties");
-//		FileInputStream FIS=new FileInputStream(file);
-//		Properties prop=new Properties();
-//		prop.load(FIS);	
+		File file=new File("C:\\Users\\thirumaran\\eclipse-workspace\\PowerFundOnee\\Data.properties");
+		FileInputStream FIS=new FileInputStream(file);
+		Properties prop=new Properties();
+		prop.load(FIS);	
 	}
 
 	@AfterMethod
@@ -102,10 +102,13 @@ public class CheckPayments extends Locators {
 		driver.findElement(By.xpath(CPCusEditRobBtn)).click();
 		Thread.sleep(2000);
 		driver.findElement(By.xpath(CPCusEditSavBtn)).click();
-		ele1=driver.findElement(By.xpath("//*[@id=\"kt_body\"]/div[3]/div/div[2]/div/div[2]/div/div/div[10]/button"));
+		ele1=driver.findElement(By.xpath("/html/body/div[3]/div/div[2]/div/div[2]/div/div/div[9]/button"));
 		Thread.sleep(2000);
 		if(ele1.isDisplayed()) {
 			System.out.println("Mandatory message is shown");
+			ele2=driver.findElement(By.xpath("/html/body/div[3]/div/div[2]/div/div[2]/div/div"));
+			String text = ele2.getText();
+			System.out.println("Alert message displayed like: "+text);
 		}
 		else {
 			System.out.println("Mandatory message is not shown");
@@ -136,7 +139,7 @@ public class CheckPayments extends Locators {
 		js.executeScript("window.scrollTo(0, 0);");
 		driver.findElement(By.xpath(CPCusEditDocBtn)).click();
 		Thread.sleep(2000);
-		String FilePath="C:\\Users\\thirumaran\\OneDrive\\Desktop\\Screenshot 2024-03-06 105214.png";
+		String FilePath="C:\\Users\\thirumaran\\eclipse-workspace\\PowerFundOneeFinal\\Files\\Blank.xlsx";
 		Robot robot = new Robot();
 		StringSelection selection = new StringSelection(FilePath);
 		Toolkit.getDefaultToolkit().getSystemClipboard().setContents(selection, null);
@@ -156,6 +159,21 @@ public class CheckPayments extends Locators {
 		driver.findElement(By.name(CPCusEdiNamAcc)).sendKeys(CPCusEditNamAcc);
 		driver.findElement(By.name(CPCusEdiBnkAcc)).sendKeys(CPCusEditBnkAcc);
 		driver.findElement(By.name(CPCusEdiBnkAccRout)).sendKeys(CPCusEditBnkAccRout);
+		
+		driver.findElement(By.xpath("/html/body/div[1]/div[2]/div[2]/div[2]/div/div/div/div[2]/form/div/div[2]/div[8]/div[3]/div[2]/div/a/a"))
+		.click();
+		
+		driver.findElement(By.xpath("/html/body/div[4]/div/div[2]/div/div[2]/div/div[2]/div/div[1]/input"))
+		.sendKeys("January, 2024");
+		Thread.sleep(2000);
+		driver.findElement(By.xpath("/html/body/div[4]/div/div[2]/div/div[2]/div/div[2]/div/div[1]/input"))
+		.sendKeys(Keys.ENTER);
+		
+		driver.findElement(By.xpath("/html/body/div[4]/div/div[2]/div/div[2]/div/div[2]/div/div[2]/button"))
+		.click();
+		
+		driver.findElement(By.xpath("/html/body/div[4]/div/div[2]/div/div[2]/div/button"))
+		.click();
 		driver.findElement(By.xpath(CPCusEditSavBtn)).click();
 	}
 }
