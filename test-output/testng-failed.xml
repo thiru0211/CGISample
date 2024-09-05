@@ -6,8 +6,10 @@
       <class name="allPages.CheckPayments">
         <methods>
           <include name="tearDown"/>
+          <include name="TC03"/>
           <include name="setUp"/>
           <include name="launch"/>
+          <include name="TC04"/>
           <include name="TC05"/>
         </methods>
       </class> <!-- allPages.CheckPayments -->

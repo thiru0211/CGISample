@@ -1,18 +1,9 @@
 package allPages;
 
-import java.awt.AWTException;
-import java.awt.Robot;
-import java.awt.Toolkit;
-import java.awt.datatransfer.StringSelection;
-import java.awt.event.KeyEvent;
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.time.Duration;
-import java.util.Properties;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -35,17 +26,12 @@ public class CheckPayments extends Locators {
 	public void setUp() throws IOException{
 		WebDriverManager.chromedriver().setup();
 		ChromeOptions option=new ChromeOptions();
-		//option.addArguments("--headless=new");
+		option.addArguments("--headless=new");
 		driver=new ChromeDriver(option);
 		driver.manage().window().maximize(); 
 		driver.manage().timeouts().implicitlyWait(Duration.ofMinutes(1));
 		driver.manage().timeouts().pageLoadTimeout(Duration.ofMinutes(1));
-		//driver.get("http://192.168.1.36:90/#/auth");
-		driver.get("https://www.hedgeonline.us/RCGI/auth");
-//		File file=new File("C:\\Users\\thirumaran\\eclipse-workspace\\PowerFundOnee\\Data.properties");
-//		FileInputStream FIS=new FileInputStream(file);
-//		Properties prop=new Properties();
-//		prop.load(FIS);	
+		driver.get("http://192.168.1.36/CGI/auth");
 	}
 
 	@AfterMethod
@@ -92,70 +78,5 @@ public class CheckPayments extends Locators {
 		driver.findElement(By.xpath(CPAddCustName)).sendKeys(CPAddCusName);
 	}
 
-	@Test(priority = 4,retryAnalyzer = ReRunFailedTestCase.class)
-	public void TC03() throws InterruptedException {
-		TC02();
-		Thread.sleep(2000);
-		driver.findElement(By.xpath(CPAddSrchSugBtn)).click();
-		driver.findElement(By.xpath(CPAddSrchBtn)).click();
-		Thread.sleep(2000);
-		driver.findElement(By.xpath(CPCusEditRobBtn)).click();
-		Thread.sleep(2000);
-		driver.findElement(By.xpath(CPCusEditSavBtn)).click();
-		ele1=driver.findElement(By.xpath("//*[@id=\"kt_body\"]/div[3]/div/div[2]/div/div[2]/div/div/div[10]/button"));
-		Thread.sleep(2000);
-		if(ele1.isDisplayed()) {
-			System.out.println("Mandatory message is shown");
-		}
-		else {
-			System.out.println("Mandatory message is not shown");
-		}
-		ele1.click();
-	}
 
-	@Test(priority = 5,retryAnalyzer = ReRunFailedTestCase.class)
-	public void TC04() throws InterruptedException {
-		TC02();
-		Thread.sleep(2000);
-		driver.findElement(By.xpath(CPAddSrchBtn)).click();
-		Thread.sleep(2000);
-		driver.findElement(By.xpath(CPCusEditBckBtn)).click();
-	}
-
-	@Test(priority = 6,retryAnalyzer = ReRunFailedTestCase.class)
-	public void TC05() throws InterruptedException, AWTException {
-		TC03();
-		String CPCusEditChkNam=PropertyFileReader.propertymap.get("CPCusEditChkNam");
-		String CPCusEditChkDate=PropertyFileReader.propertymap.get("CPCusEditChkDate");
-		String CPCusEditChkAmt=PropertyFileReader.propertymap.get("CPCusEditChkAmt");
-		String CPCusEditNamAcc=PropertyFileReader.propertymap.get("CPCusEditNamAcc");
-		String CPCusEditBnkAcc=PropertyFileReader.propertymap.get("CPCusEditBnkAcc");
-		String CPCusEditBnkAccRout=PropertyFileReader.propertymap.get("CPCusEditBnkAccRout");
-
-		JavascriptExecutor js = (JavascriptExecutor) driver;
-		js.executeScript("window.scrollTo(0, 0);");
-		driver.findElement(By.xpath(CPCusEditDocBtn)).click();
-		Thread.sleep(2000);
-		String FilePath="C:\\Users\\thirumaran\\OneDrive\\Desktop\\Screenshot 2024-03-06 105214.png";
-		Robot robot = new Robot();
-		StringSelection selection = new StringSelection(FilePath);
-		Toolkit.getDefaultToolkit().getSystemClipboard().setContents(selection, null);
-		robot.keyPress(KeyEvent.VK_CONTROL);
-		robot.keyPress(KeyEvent.VK_V);
-		robot.keyRelease(KeyEvent.VK_V);
-		robot.keyRelease(KeyEvent.VK_CONTROL);
-		robot.keyPress(KeyEvent.VK_ENTER);
-		robot.keyRelease(KeyEvent.VK_ENTER);
-		Thread.sleep(2000);
-
-		ele1=driver.findElement(By.name(CPCusEdiChkNam));
-		ele1.click();
-		ele1.sendKeys(CPCusEditChkNam);
-		driver.findElement(By.name(CPCusEdiChkDate)).sendKeys(CPCusEditChkDate);
-		driver.findElement(By.name(CPCusEdiChkAmt)).sendKeys(CPCusEditChkAmt);
-		driver.findElement(By.name(CPCusEdiNamAcc)).sendKeys(CPCusEditNamAcc);
-		driver.findElement(By.name(CPCusEdiBnkAcc)).sendKeys(CPCusEditBnkAcc);
-		driver.findElement(By.name(CPCusEdiBnkAccRout)).sendKeys(CPCusEditBnkAccRout);
-		driver.findElement(By.xpath(CPCusEditSavBtn)).click();
-	}
 }
