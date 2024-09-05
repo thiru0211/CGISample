@@ -14,7 +14,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import org.openqa.selenium.Keys;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
@@ -32,12 +31,7 @@ public class CheckPayments extends Locators {
 		driver.manage().window().maximize(); 
 		driver.manage().timeouts().implicitlyWait(Duration.ofMinutes(1));
 		driver.manage().timeouts().pageLoadTimeout(Duration.ofMinutes(1));
-<<<<<<< HEAD
 		driver.get("http://192.168.1.36/CGI/auth");
-=======
-		//driver.get("http://192.168.1.36/CGI/auth");
-		driver.get("https://www.hedgeonline.us/RCGI/auth");
->>>>>>> 6bae21a6d479eb3b36c27b6727e3c26e57628587
 	}
 
 	@AfterMethod
@@ -83,10 +77,6 @@ public class CheckPayments extends Locators {
 		sel.selectByVisibleText(CPAddInstlrDD);
 		driver.findElement(By.xpath(CPAddCustName)).sendKeys(CPAddCusName);
 	}
-<<<<<<< HEAD
 
 
 }
-=======
-}
->>>>>>> 6bae21a6d479eb3b36c27b6727e3c26e57628587
